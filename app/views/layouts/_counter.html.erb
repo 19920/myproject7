@@ -1,0 +1,51 @@
+<div id="counter">
+    Months: <span class="months"></span>,
+    Days: <span class="days"></span>,
+    Hours: <span class="hours"></span>,
+    Minutes: <span class="minutes"></span>,
+    Seconds: <span class="seconds"></span>
+
+    <script>
+        function getWaitingTime(endtime) {
+            var time = Date.parse(endtime) - Date.now();
+            var seconds = Math.floor((time / 1000) % 60);
+            var minutes = Math.floor((time / 1000 / 60) % 60);
+            var hours = Math.floor((time / (1000 * 60 * 60)) % 24);
+            var days = Math.floor(time / (1000 * 60 * 60 * 24));
+            var months = Math.floor(time / (1000 * 60 * 60 * 24 * 30));
+
+            return {
+                'total': time,
+                'months': months,
+                'days': days,
+                'hours': hours,
+                'minutes': minutes,
+                'seconds': seconds
+            };
+        }
+        function initializeTime(id, endtime) {
+            var clock = document.getElementById(id);
+            var monthsSpan = clock.querySelector('.months');
+            var daysSpan = clock.querySelector('.days');
+            var hoursSpan = clock.querySelector('.hours');
+            var minutesSpan = clock.querySelector('.minutes');
+            var secondsSpan = clock.querySelector('.seconds');
+        function updateTime() {
+            var time = getWaitingTime(endtime);
+            monthsSpan.innerHTML = time.months;
+            daysSpan.innerHTML = time.days;
+            hoursSpan.innerHTML = ('0' + time.hours).slice(-2);
+            minutesSpan.innerHTML = ('0' + time.minutes).slice(-2);
+            secondsSpan.innerHTML = ('0' + time.seconds).slice(-2);
+            if (time.total <= 0) {
+            clearInterval(timeinterval);
+            }
+        }
+        updateTime();
+        var timeinterval = setInterval(updateTime, 1000);
+        }
+        var deadline = '04/01/2020';
+        initializeTime('counter', deadline);
+    </script>
+
+</div>

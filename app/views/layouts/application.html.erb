@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Myproject7</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <%= react_component "Navbar" %>
+  <div class="">
+    <%= yield %>
+  </div>
+<hr>
+<div class="row">
+  <div class="col-md-4">
+  <h6> Follow us on:<a><u>www.tweetter.com</u><a></h6>
+</div>
+<div class="col-md-4">
+<h6> Follow us on: <a><u>www.facebook.com</u><a></h6>
+</div>
+<div class="col-md-4">
+<h6> Follow us on: <a><u>www.instagram.com</u></a></h6>
+</div>
+</div>
+  </body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+      #map {
+        height: 750px;
+
+
+        border-radius: 5px;
+      }
+
+
+    </style>
+
+    <div id="map"></div>
+
+</head>
+
+<body>
+    <div id="map_canvas" style="width:100%; height:100%"></div>
+    <script>
+
+      function initMap() {
+
+            var MainCenter = {lat: 39.98, lng: -105.24};
+            var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 12,
+            center: MainCenter
+            });
+
+            $.getJSON("/riders.json", function ( data )  {
+                $.each(data, function(key, data) {
+                    var latLng = new google.maps.LatLng( data.latitude , data.longitude );
+
+                    var infowindow = new google.maps.InfoWindow ({
+                    })
+                    var marker = new google.maps.Marker({
+                        position: latLng,
+                        map: map,
+                        title: (data.first_name + ' ' +data.last_name)
+
+                    });
+                  google.maps.event.addListener (marker, 'click', function() {
+                  infowindow.setContent( data.first_name +' '+ data.last_name);
+                  infowindow.open(map, marker);
+                  setTimeout(function () { infowindow.close(); }, 5000);
+                });
+
+              });
+      });
+      }
+
+      </script>
+</body>
+
+
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAqpAmGtR8d4Y5h8ZP_V0b1Q47RmCYl2W4
+&callback=initMap">
+    </script>
+  </body>
+</html>

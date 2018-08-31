@@ -1,0 +1,54 @@
+<div class="container ">
+  <h6 class="text-center">Photos</h6>
+ <div class="row">
+
+
+   <div class="col-md-12">
+     <style>
+               .all_photos {
+                   display:inline-block;
+                   margin: 10px 10px 10px 10px;
+                   border-radius: 5px;
+               };
+   </style>
+
+
+       <script>
+                   $(function(){
+                       var types = {
+
+                           sort: 'relevance',
+                           tags: '#bikerace , #boulderbiketour',
+                           extras: 'url_q',
+                           page: 'page',
+                           per_page:40,
+                           format: 'json',
+                           method: 'flickr.photos.search',
+                           api_key: '8558b3df1302774444965b20db591e74',
+                           nojsoncallback: 1,
+                           safe_search: 2
+                       };
+
+                       $.get('http://api.flickr.com/services/rest/', types, function(response){
+                           var images = $('<div>', {'class': 'gallery' })
+                               $.each(response.photos.photo, function(index, value){
+                                   var image = $('<li>', {
+                                       'class': 'all_photos'
+                                   }).append($('<img>', {
+                                       src: value.url_q,
+                                       title: value.title,
+                                       height: '100%',
+                                       width: '100%',
+                                   })).appendTo(images);
+                               });
+                               images.appendTo('photos');
+                       });
+                   });
+       </script>
+
+
+   </div>
+
+ </div>
+ <%= react_component "Navbar" %>
+</div>

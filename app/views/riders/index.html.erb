@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+<div class="container riders">
+     <h1 class="text-center">Riders</h1>
+      <p><strong>we have now <%=@riders.length %> Riders records :</strong></p>
+  <div class ="row-padding" id="demo">
+
+<table class="table table-bordered table-hover table-condensed ">
+  <thead>
+    <tr>
+      <th> Firstname</th>
+      <th> Lastname</th>
+      <th> City</th>
+      <th> State</th>
+
+
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @riders.each do |rider| %>
+
+      <tr>
+        <td><%= rider.first_name %></td>
+        <td><%= rider.last_name %></td>
+        <td><%= rider.city %></td>
+        <td><%= rider.state %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
+<div class="container"
+<h3 class="card-text">Rocky Mountains,Colorado</h2>
+<p>First April  2020</p>
+<h6 class="card-title" >Starts in:</h6>
+<%= render ("layouts/counter") %>
+</div>

@@ -1,0 +1,27 @@
+<div class="container riders">
+<p id="notice"><%= notice %></p>
+
+
+<p>
+  <strong>Firstname:</strong>
+  <%= @contest.first_name %>
+</p>
+
+<p>
+  <strong>Lastname:</strong>
+  <%= @contest.last_name %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @contest.email %>
+</p>
+
+<p>
+  <strong>Slogan:</strong>
+  <%= @contest.slogan %>
+</p>
+
+<%= link_to 'Edit', edit_contest_path(@contest) %> |
+<%= link_to 'Back', root_path %>
+</div>
